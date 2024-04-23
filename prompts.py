@@ -20,7 +20,7 @@ generate_prompt = PromptTemplate(
     Question: {question} 
     Context: {context} 
     Answer: <|eot_id|><|start_header_id|>assistant<|end_header_id|>""",
-    input_variables=["question", "document"],
+    input_variables=["question", "context"],
 )
 
 hallucination_grader_prompt = PromptTemplate(

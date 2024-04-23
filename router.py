@@ -6,6 +6,6 @@ from config import llm_name, base_url
 router_llm = ChatOllama(base_url=base_url, model=llm_name, format="json", temperature=0)
 
 
-def setup_router():
+def setup_question_router():
     question_router = router_prompt | router_llm | JsonOutputParser()
     return question_router
