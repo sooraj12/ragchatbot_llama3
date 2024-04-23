@@ -1,10 +1,12 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import GPT4AllEmbeddings
-from pprint import pprint
+from langchain_community.embeddings import OllamaEmbeddings
+# from pprint import pprint
 
+llm_host = "103.152.157.130:11434"
 llm = "llama3:70b"
+embedding_model_name = "nomic-embed-text"
 
 ## indexing
 # load documents
@@ -21,8 +23,11 @@ text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
 )
 doc_splits = text_splitter.split_documents(docs_list)
 # add to vector db
+embedding_model = OllamaEmbeddings(
+    base_url=f"http://{llm_host}", model=embedding_model_name
+)
 vectorstore = Chroma.from_documents(
-    documents=doc_splits, collection_name="rag-chroma", embedding=GPT4AllEmbeddings()
+    documents=doc_splits, collection_name="rag-chroma", embedding=embedding_model
 )
 retriever = vectorstore.as_retriever()
 print(retriever.invoke("what is an agent"))
