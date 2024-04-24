@@ -5,10 +5,12 @@ from prompts import (
     hallucination_grader_prompt,
     ans_grader_prompt,
 )
-from config import llm_name, base_url
+from config import grader_llm_name, base_url
 
 
-grader_llm = ChatOllama(base_url=base_url, model=llm_name, format="json", temperature=0)
+grader_llm = ChatOllama(
+    base_url=base_url, model=grader_llm_name, format="json", temperature=0
+)
 
 
 def setup_retriever_grader():
