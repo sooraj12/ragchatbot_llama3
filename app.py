@@ -87,7 +87,6 @@ def grade_documents(state):
     filtered_docs = []
     web_search = "No"
     for d in documents:
-        print(len(d.page_content))
         score = retrieval_grader.invoke(
             {"question": question, "document": d.page_content}
         )
