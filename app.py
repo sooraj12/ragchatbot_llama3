@@ -215,6 +215,7 @@ def grade_generation_v_documents_and_question(state):
         score = ans_grader.invoke({"question": question, "generation": generation})
         grade = score["score"]
         if grade == "yes":
+            print("---ANSWER---")
             return "useful"
         else:
             return "not_useful"
@@ -252,8 +253,10 @@ workflow.add_conditional_edges(
 app = workflow.compile()
 
 if __name__ == "__main__":
+    # test
     inputs = {"question": "What are the types of agent memory?"}
-    # inputs = {"question": "Who are the Bears expected to draft first in the NFL draft?"}
+    # inputs = {"question": "What is langchain?"}
+    # inputs = {"question": "What is ReactJS?"}
     for output in app.stream(inputs):
         for key, value in output.items():
             pprint(f"Finished running: {key}:")
