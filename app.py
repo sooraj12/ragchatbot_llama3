@@ -252,8 +252,10 @@ workflow.add_conditional_edges(
 # compile
 app = workflow.compile()
 
-inputs = {"question": "What are the types of agent memory?"}
-for output in app.stream(inputs):
-    for key, value in output.items():
-        pprint(f"Finished running: {key}:")
-pprint(value["generation"])
+if __name__ == "__main__":
+    inputs = {"question": "What are the types of agent memory?"}
+    # inputs = {"question": "Who are the Bears expected to draft first in the NFL draft?"}
+    for output in app.stream(inputs):
+        for key, value in output.items():
+            pprint(f"Finished running: {key}:")
+    pprint(value["generation"])
