@@ -1,11 +1,18 @@
 from langserve import RemoteRunnable
 from pprint import pprint
+import sys
+
+args = sys.argv[1:]
+
+if len(args) != 1:
+    print("Usage: Provide question")
+    sys.exit(1)
+
+question = args[0]
 
 remote_chain = RemoteRunnable("http://localhost:8080/chat/")
 
-inputs = {"question": "What are the types of agent memory?"}
-# inputs = {"question": "What is langchain?"}
-# inputs = {"question": "What is ReactJS?"}
+inputs = {"question": question}
 
 for output in remote_chain.stream(inputs):
     for key, value in output.items():
