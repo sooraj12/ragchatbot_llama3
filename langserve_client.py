@@ -9,6 +9,7 @@ if len(args) != 1:
     sys.exit(1)
 
 question = args[0]
+print(question)
 
 remote_chain = RemoteRunnable("http://localhost:8080/chat/")
 
