@@ -1,6 +1,6 @@
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
-from config import embedding_model_name, base_url
+from rag.config import embedding_model_name, base_url
 
 
 def setup_retriever(doc_splits):

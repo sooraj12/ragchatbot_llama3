@@ -1,5 +1,5 @@
-from prompts import generate_prompt
-from config import llm_name, base_url
+from rag.prompts import generate_prompt
+from rag.config import llm_name, base_url
 from langchain_community.chat_models import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
 

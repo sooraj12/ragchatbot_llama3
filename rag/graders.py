@@ -1,11 +1,11 @@
 from langchain_community.chat_models import ChatOllama
 from langchain_core.output_parsers import JsonOutputParser
-from prompts import (
+from rag.prompts import (
     retriever_grader_prompt,
     hallucination_grader_prompt,
     ans_grader_prompt,
 )
-from config import grader_llm_name, base_url
+from rag.config import grader_llm_name, base_url
 
 
 grader_llm = ChatOllama(

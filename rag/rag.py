@@ -1,12 +1,16 @@
-from loader import load_urls
-from retriever import setup_retriever
-from graders import setup_retriever_grader, setup_hallucination_grader, setup_ans_grader
-from router import setup_question_router
+from rag.loader import load_urls
+from rag.retriever import setup_retriever
+from rag.graders import (
+    setup_retriever_grader,
+    setup_hallucination_grader,
+    setup_ans_grader,
+)
+from rag.router import setup_question_router
 from typing_extensions import TypedDict
 from typing import List
 from langgraph.graph import StateGraph, END
-from generate import rag_chain
-from tools import web_search_tool
+from rag.generate import rag_chain
+from rag.tools import web_search_tool
 from langchain.schema import Document
 from pprint import pprint
 
@@ -250,14 +254,14 @@ workflow.add_conditional_edges(
 )
 
 # compile
-app = workflow.compile()
+rag = workflow.compile()
 
 if __name__ == "__main__":
     # test
     inputs = {"question": "What are the types of agent memory?"}
     # inputs = {"question": "What is langchain?"}
     # inputs = {"question": "What is ReactJS?"}
-    for output in app.stream(inputs):
+    for output in rag.stream(inputs):
         for key, value in output.items():
             pprint(f"Finished running: {key}:")
     pprint(value["generation"])
